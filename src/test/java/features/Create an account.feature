@@ -3,8 +3,16 @@ Feature: Log in and purchase a product
   Background:
     Given user is on Product Store Landing page
 
+  Scenario: Log in as existing user and log out
+    When user clicks on LogIn link
+    Then Log In modal window is displayed
+    And user enters chisinau as username and chisinau as password
+    When user clicks on Sign Up button
+    Then user is successfully logged in
+    And user clicks on LogOut link
+
   Scenario: Log in as existing user and purchase a product
-    When user clicks on Sign In link
+    When user clicks on LogIn link
     Then Log In modal window is displayed
     And user enters chisinau as username and chisinau as password
     When user clicks on Sign Up button

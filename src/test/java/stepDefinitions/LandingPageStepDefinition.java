@@ -31,9 +31,18 @@ public class LandingPageStepDefinition {
         logger.info("The user is on Product Store landing page");
     }
 
-    @When("user clicks on Sign In link")
-    public void userClicksOnSignInLink() {
-        landingPage.clickOnSignUpLink();
+    @When("^user clicks on (LogIn|LogOut) link$")
+    public void userClicksOnLogInOrLogOutLink(String linkName) {
+        switch (linkName) {
+            case "LogIn":
+                landingPage.clickOnLogInLink();
+                break;
+            case "LogOut":
+                landingPage.clickOnLogOutLink();
+                break;
+            default:
+                throw new RuntimeException("Unknown link name");
+        }
     }
 
     @Then("^(.*) modal window is displayed$")
@@ -43,7 +52,7 @@ public class LandingPageStepDefinition {
 
     @And("^user enters (.*) as username and (.*) as password$")
     public void userEntersAsUsernameAndAsPassword(String username, String password) {
-        landingPage.insertUsernameAndPassword(username, password, testContextSetup);
+        landingPage.insertUsernameAndPassword(username, password);
         testContextSetup.save(USERNAME, username);
         testContextSetup.save(PASSWORD, password);
     }

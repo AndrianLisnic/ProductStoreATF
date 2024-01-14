@@ -21,7 +21,8 @@ public class LandingPage {
     }
 
     private final By logInLink = By.xpath("//a[@id=\"login2\"]");
-        private final By logInButton = By.xpath("//button[text()=\"Log in\"]");
+    private final By logOutLink = By.xpath("//a[@id=\"logout2\"]");
+    private final By logInButton = By.xpath("//button[text()=\"Log in\"]");
     private final By usernameInputField = By.xpath("//input[@id=\"loginusername\"]");
     private final By passwordInputField = By.xpath("//input[@id=\"loginpassword\"]");
     private final By modalDialog = By.xpath("//*[@id=\"logInModalLabel\"]");
@@ -33,8 +34,12 @@ public class LandingPage {
         return driver.getTitle();
     }
 
-    public void clickOnSignUpLink() {
+    public void clickOnLogInLink() {
         driver.findElement(logInLink).click();
+    }
+
+    public void clickOnLogOutLink() {
+        driver.findElement(logOutLink).click();
     }
 
     public void clickOnLogInButton() {
@@ -52,7 +57,7 @@ public class LandingPage {
         logger.info(String.format("%s modal window is displayed", modalName));
         testContextSetup.genericUtils.switchToActiveElement();
     }
-    public void insertUsernameAndPassword(String username, String password, TestContextSetup testContextSetup) {
+    public void insertUsernameAndPassword(String username, String password) {
         driver.findElement(usernameInputField).sendKeys(username);
         driver.findElement(passwordInputField).sendKeys(password);
     }
