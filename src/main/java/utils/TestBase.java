@@ -2,6 +2,7 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.FileInputStream;
 import java.util.Properties;
@@ -19,8 +20,13 @@ public class TestBase {
 
         if (driver == null) {
             if (browser.equals("Chrome")) {
+                // Create an object of Chrome Options class
+                ChromeOptions options = new ChromeOptions();
+                // pass the argument –headless to Chrome Options class.
+                options.addArguments("--headless");
+
                 System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
-                driver = new ChromeDriver();
+                driver = new ChromeDriver(options);
             } else {
                 throw new Exception("Please implement support for this browser");
             }
