@@ -9,7 +9,7 @@ pipeline {
             }
         stage('Test') {
             steps {
-                bat "mvn -D clean test"
+                bat "mvn -D clean test -Dcucumber.tags=${RunByTag}"
             }
 
             post {
